@@ -16,11 +16,11 @@ class clientController extends Controller
             $file = fopen($file_name, 'w');
             fputcsv($file, array('id','name','gender','phone','email','address','nationality','DOB','education','contact_mode'));
             fclose($file);
-            return json_encode("No clients added yet");
+            return json_encode('No clients added yet');
         }
 
         $rows   = array_map('str_getcsv', file($file_name, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)); // CSV to array
-        $header = array_shift($rows); // Removes first row af array and shifts index
+        $header = array_shift($rows); // Removes first row of array and shifts index
         $clients    = array();
         foreach($rows as $row) {
             $clients[] = array_combine($header, $row); // Combines two array as key value pair
@@ -58,12 +58,23 @@ class clientController extends Controller
         );
         fputcsv($file, $form_data);
         fclose($file);
-        return json_encode("Client added!");
+        return json_encode('Client added!');
     }
 
     // Display specific client data.
     public function show($id)
     {
-        //
+        $file_name = 'clients.csv';
+        if(file_exists($file_name)) {
+            $rows   = array_map('str_getcsv', file($file_name, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)); // CSV to array
+            $header = array_shift($rows); // Removes first row of array and shifts index
+            $client = array();
+            if($id > 0 && $id <= count($rows)) {
+                $client[] = array_combine($header, $rows[$id-1]); // Combines two array as key value pair
+                return ($client);
+            }
+            return json_encode("Client doesn't exist");
+        }
+        return json_encode('No clients added yet');
     }
 }
