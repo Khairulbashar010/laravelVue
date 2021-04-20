@@ -20,5 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/clients', [clientController::class, 'index']);
 Route::prefix('clients')->group( function () {
-    Route::post('store', [clientController::class, 'store']);
+    Route::post('/store', [clientController::class, 'store']);
+    Route::get('/{id}', [clientController::class, 'show']);
 });
