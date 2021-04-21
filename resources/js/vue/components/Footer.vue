@@ -1,6 +1,8 @@
 <template>
     <footer>
-        <router-link v-show="homePage" to="/clients">Clients</router-link>
+        <router-link v-show="homePage" to="/clients" class="btn"
+            >Clients</router-link
+        >
         <p>Developed by &copy; Khairul Bashar</p>
     </footer>
 </template>
@@ -17,5 +19,8 @@ export default {
 footer > p {
     margin-top: 30px;
     text-align: center;
+}
+.btn {
+    background: purple;
 }
 </style>
