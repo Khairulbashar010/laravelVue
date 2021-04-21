@@ -14,7 +14,7 @@ class clientController extends Controller
         if(!file_exists($file_name)){
             // Create file with heading and save.
             $file = fopen($file_name, 'w');
-            fputcsv($file, array('id','name','gender','phone','email','address','nationality','DOB','education','contact_mode'));
+            fputcsv($file, array('id','name','gender','phone','email','address','nationality','dob','education','contact_mode'));
             fclose($file);
             return json_encode('No clients added yet');
         }
@@ -36,7 +36,7 @@ class clientController extends Controller
         if(!file_exists($file_name)){
             // Create file with heading and save.
             $file = fopen($file_name, 'w');
-            fputcsv($file, array('id','name','gender','phone','email','address','nationality','DOB','education','contact_mode'));
+            fputcsv($file, array('id','name','gender','phone','email','address','nationality','dob','education','contact_mode'));
             fclose($file);
         }
         $file = fopen($file_name, 'a');
@@ -52,7 +52,7 @@ class clientController extends Controller
             'email' => $request->client['email'],
             'address' => $request->client['address'],
             'nationality' => $request->client['nationality'],
-            'DOB' => $request->client['DOB'],
+            'dob' => $request->client['dob'],
             'education' => $request->client['education'],
             'contact_mode' => $request->client['contact_mode']
         );
