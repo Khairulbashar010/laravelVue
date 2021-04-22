@@ -6,10 +6,7 @@
             title="Add client"
             :showAddClient="showAddClient"
         />
-        <router-view
-            :showAddClient="showAddClient"
-            :clients="clients"
-        ></router-view>
+        <router-view :showAddClient="showAddClient"></router-view>
         <Footer />
     </div>
 </template>
@@ -26,7 +23,6 @@ export default {
     data() {
         return {
             showAddClient: false,
-            clients: [],
         };
     },
     methods: {
@@ -38,20 +34,6 @@ export default {
         homePage() {
             return this.$route.path === "/" ? true : false;
         },
-        getClients() {
-            axios
-                .get("api/clients")
-                .then((response) => {
-                    console.log(response.data);
-                    this.clients = response.data;
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
-    },
-    created() {
-        this.getClients;
     },
 };
 </script>
